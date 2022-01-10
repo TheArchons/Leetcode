@@ -3,9 +3,11 @@
 using namespace std;
 
 string convert(string s, int numRows) {
+    if (numRows == 1) return s;
+    int height = numRows;
     numRows += numRows - 2;
     string out = "";
-    for(int difference = 0, layer = 0; layer < numRows-1; layer++, difference += 2) {
+    for(int difference = 0, layer = 0; layer < height; layer++, difference += 2) {
         int currentPos = layer;
         bool isLong = true;
         int add = 0;
