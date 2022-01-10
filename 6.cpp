@@ -17,7 +17,7 @@ string convert(string s, int numRows) {
         while (currentPos < s.length()) {
             out += s[currentPos];
             if (isLong) {
-                if (numRows - difference == 0) {
+                if (numRows - difference <= 0) {
                     add = 0;
                 }
                 else {
@@ -25,7 +25,7 @@ string convert(string s, int numRows) {
                 }
                 currentPos += numRows - add;
             } else {
-                if (difference == 0) {
+                if (difference == 0 || difference >= numRows) {
                     add = numRows;
                 }
                 else {
