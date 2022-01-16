@@ -19,7 +19,7 @@ def maxArea(height):
     hLen = len(height)
     topHeights = topTwo(height)
     print(topHeights[0], topHeights[1])
-    for i in reversed(range(2, hLen)):
+    for i in reversed(range(1, hLen)):
         for j in range(hLen-i):
             print(j, i+j)
             if j > topHeights[0] and i+j < topHeights[1]:
