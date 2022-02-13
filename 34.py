@@ -11,6 +11,7 @@ def searchRange(nums, target):
             return [pos, pos + iPos]
         iPos += 1
     return [pos, pos+iPos]
+    
 nums = input().strip('[]').split(',')
 nums = [int(i) for i in nums]
 target = int(input())
