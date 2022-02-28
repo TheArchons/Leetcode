@@ -35,10 +35,13 @@ class Solution:
                         continue
                     #backtrack
                     #visited.add(jPos)
+                    action = True
                     if len(curr) != 0:
                         curr.pop()
+                    else:
+                        action = False
                     depth -= 1
-                    action = True
+                    
                     break
                 if not action:
                     break
