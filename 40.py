@@ -17,27 +17,29 @@ class Solution:
             visited.add(len(candidates)-pos)
             curr = [i]
             depth = 0
-            
+            currPos = [pos]
             if i > target:
                 continue
             while True:
                 action = False
                 for jPos, j in enumerate(candidates[:len(candidates)-pos-1]):
-                    if jPos in visited:
+                    if jPos in visited or jPos in currPos:
                         continue
                     if sum(curr) + j == target:
                         res.append(sorted(curr + [j]))
                     elif sum(curr) + j < target:
                         curr.append(j)
-                        visited.add(jPos)
+                        currPos.append(jPos)
+                        #visited.add(jPos)
                         depth += 1
                         action = True
                         continue
                     #backtrack
-                    #visited.add(jPos)
+                    visited.add(jPos)
                     action = True
                     if len(curr) != 0:
                         curr.pop()
+                        currPos.pop()
                     else:
                         action = False
                     depth -= 1
