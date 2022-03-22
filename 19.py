@@ -4,8 +4,8 @@ class ListNode:
         self.val = val
         self.next = next
 
-#put leetcode code here
-class Solution:
+"""#put leetcode code here 
+class Solution: #2 pass solution
     def removeNthFromEnd(self, l1, n: int):
         #find the length of the list
         head = l1
@@ -20,10 +20,32 @@ class Solution:
             head = head.next
 
         #remove the next node
-        if head.next:
-            head.next = head.next.next
+        if length - n == 0:
+            return l1.next
         else:
-            l1 = None
+            head.next = head.next.next
+
+        return l1"""
+
+#put leetcode code here 
+class Solution: #1 pass solution
+    def removeNthFromEnd(self, l1, n: int):
+        head1, head2 = l1, l1
+
+        #move head1 n nodes ahead
+        for i in range(n):
+            head1 = head1.next
+
+        if head1 is None:
+            return l1.next
+
+        #move head1 to the end while also moving head2
+        while head1.next:
+            head1 = head1.next
+            head2 = head2.next
+        
+        #remove the node
+        head2.next = head2.next.next
 
         return l1
 
