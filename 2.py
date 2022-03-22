@@ -4,15 +4,27 @@ class ListNode:
         self.val = val
         self.next = next
 
+hasFront = False
+
 class Solution:
     def carry(self, l1, pos): #carry the 1 to the next node
         l1Head = l1
         for i in range(pos-1):
             l1Head = l1Head.next
+        
+        #if it is the front digit
+        if pos == 0:
+            l1Head =  ListNode(0)
+            l1Head.next = l1
+            l1 = l1Head
+            global hasFront
+            hasFront = True
+
         l1Head.val += 1
         if l1Head.val >= 10:
             l1Head.val -= 10
             self.carry(l1, pos-1)
+        return l1
 
     def addTwoNumbers(self, l1, l2):
         l1Head = l1
@@ -64,7 +76,7 @@ class Solution:
                 l1Head.val += l2Head.val
                 if l1Head.val >= 10:
                     l1Head.val -= 10
-                    self.carry(l1, pos) #carry the 1 to the next node
+                    l1 = self.carry(l1, pos) #carry the 1 to the next node
         
         end = l1Head #the last node
         l1Head = l1 #reset head
@@ -83,6 +95,10 @@ class Solution:
             curr = l1Head
             if l1Head != None:
                 l1Head = l1Head.next
+
+        if hasFront:
+            l1.next = ListNode(1)
+            l1.next.next = None
 
         return prev
 
