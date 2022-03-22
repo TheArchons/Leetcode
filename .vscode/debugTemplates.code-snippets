@@ -15,8 +15,8 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"linkedListDebug": {
-		"prefix": "linkedListDebug",
+	"2LinkedListsDebug": {
+		"prefix": "twoLinkedListsDebug",
 		"body": [
 		  "# Definition for singly-linked list.",
 		  "class ListNode:",
@@ -25,7 +25,7 @@
 		  "        self.next = next",
 		  "",
 		  "#put leetcode code here",
-		  "${0}",
+		  "${1}",
 		  "",
 		  "list1 = input().strip('[]').split(',')",
 		  "list2 = input().strip('[]').split(',')",
@@ -46,11 +46,42 @@
 		  "    head.next = ListNode(int(list2[i]))",
 		  "    head = head.next",
 		  "",
-		  "returned = Solution().mergeTwoLists(l1, l2)",
+		  "returned = Solution().${0}(Solution, l1, l2)",
 		  "",
 		  "while returned != None:",
 		  "    print(returned.val)",
 		  "    returned = returned.next"
+		],
+		"description": ""
+	  },
+	  "linkedListDebug": {
+		"prefix": "linkedListDebug",
+		"body": [
+		  "# Definition for singly-linked list.",
+		  "class ListNode:",
+		  "    def __init__(self, val=0, next=None):",
+		  "        self.val = val",
+		  "        self.next = next",
+		  "",
+		  "#put leetcode code here",
+		  "$1",
+		  "",
+		  "#debug code",
+		  "list1 = input().strip('[]').split(',')",
+		  "list1 = [int(i) for i in list1]",
+		  "",
+		  "l1 = ListNode(list1[0])",
+		  "head = l1",
+		  "for i in range(1,len(list1)):",
+		  "    head.next = ListNode(list1[i])",
+		  "    head = head.next",
+		  "",
+		  "result = Solution.$0(Solution, l1)",
+		  "",
+		  "#print result",
+		  "while result != None:",
+		  "    print(result.val)",
+		  "    result = result.next"
 		],
 		"description": ""
 	  }
