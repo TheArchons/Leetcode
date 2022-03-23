@@ -1,11 +1,14 @@
 # Definition for singly-linked list.
+from uuid import RESERVED_FUTURE
+
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 #put leetcode code here
-"""class Solution:
+"""class Solution: #merge one by one, time complexity O(kN)
     def mergeTwoLists(self, list1, list2): #code from 21.py
         l1Head = list1
         l2Head = list2
@@ -49,7 +52,7 @@ class ListNode:
             startList = self.mergeTwoLists(self, startList, lists[i])
         return startList"""
 
-class Solution:
+"""class Solution:
     def mergeKLists(self, lists):
         #skip if empty list
         if not lists:
@@ -82,7 +85,65 @@ class Solution:
         #remove the last node
         prev.next = None
 
+        return outputList"""
+
+class Solution: #divide and conquer
+    def mergeTwoLists(self, list1, list2): #code from 21.py
+        l1Head = list1
+        l2Head = list2
+        outputList = ListNode()
+        outputListHead = outputList
+        while l1Head or l2Head:
+            if l1Head:
+                if not l2Head or l1Head.val <= l2Head.val:
+                    outputListHead.val = l1Head.val
+                    outputListHead.next = ListNode()
+                    outputListHead = outputListHead.next
+                    l1Head = l1Head.next
+                    continue
+                else:
+                    outputListHead.val = l2Head.val
+                    outputListHead.next = ListNode()
+                    outputListHead = outputListHead.next
+                    l2Head = l2Head.next
+                    continue
+            elif l2Head:
+                outputListHead.val = l2Head.val
+                outputListHead.next = ListNode()
+                outputListHead = outputListHead.next
+                l2Head = l2Head.next
+                continue
+
+        #remove the last node
+        head = outputList
+        while head and head.next != outputListHead:
+            head = head.next
+        head.next = None
         return outputList
+
+
+    def mergeKLists(self, lists):
+        if not lists: #if empty list
+            return None
+        
+        #remove empty lists
+        lists = [l for l in lists if l]
+
+        tempList = []
+        while len(lists) > 1:
+            if len(lists) % 2 != 0: #if the length of the list is odd, add the last element to the temp list and remove it from lists
+                tempList.append(lists.pop())
+
+            for l in range(0, len(lists) - 1, 2):
+                tempList.append(self.mergeTwoLists(self, lists[l], lists[l+1]))
+            lists = tempList
+            tempList = []
+        
+        if lists: #return the last list but skip if empty list
+            return lists[0]
+        else:
+            return None
+        
 
 #debug code
 
