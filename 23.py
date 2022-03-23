@@ -5,7 +5,7 @@ class ListNode:
         self.next = next
 
 #put leetcode code here
-class Solution:
+"""class Solution:
     def mergeTwoLists(self, list1, list2): #code from 21.py
         l1Head = list1
         l2Head = list2
@@ -47,8 +47,42 @@ class Solution:
             if not lists[i]: #if the list is empty, skip it
                 continue
             startList = self.mergeTwoLists(self, startList, lists[i])
-        return startList
+        return startList"""
 
+class Solution:
+    def mergeKLists(self, lists):
+        #skip if empty list
+        if not lists:
+            return None
+
+        #put all values into an array
+        array = []
+        for l in lists:
+            while l:
+                array.append(l.val)
+                l = l.next
+        
+        #skip if empty array
+        if not array:
+            return None
+
+        #sort the array
+        array.sort()
+
+        #create a new linked list
+        head = ListNode()
+        prev = head
+        outputList = head
+        for i in range(len(array)):
+            head.val = array[i]
+            head.next = ListNode()
+            prev = head
+            head = head.next
+
+        #remove the last node
+        prev.next = None
+
+        return outputList
 
 #debug code
 
