@@ -21,8 +21,8 @@ class Solution:
                 return l1
             curr = curr.next
         
-        l1 = curr
         curr = prev.next
+        l1 = curr
         
         while True:
             #check if group is large enough'
@@ -37,19 +37,31 @@ class Solution:
                 curr.next = prev
                 prev = curr
                 curr = next
-                next = next.next
+                if next is None:
+                    break
             
-            #if the next group is large enough, start a new group and set start to the end of the next group
             head = next
             for i in range(k-1):
                 if head is None:
-                    start.next = next
                     return l1
                 head = head.next
             start.next = head
+
+            #if the next group is large enough, start a new group and set start to the end of the next group
+            head = next
+            for i in range(k-1):
+                head = head.next
+                if head is None:
+                    start.next = next
+                    return l1
             start = next
-        
-        return l1
+
+            #update prev curr and next
+            prev = start
+            curr = start.next
+            if curr is None:
+                return l1
+            next = curr.next
             
 
 
