@@ -13,6 +13,8 @@ class Solution:
                 left = mid + 1
             else:
                 right = mid - 1
+        if left == right:
+            left -= 1
         if abs(nums[left] - target) < abs(nums[right] - target):
             return nums[left]
         else:
