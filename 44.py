@@ -17,7 +17,7 @@ class Solution:
                     for pos, c in enumerate(s):
                         if c == p[1]:
                             breakOut = True
-                            s = s[pos:]
+                            s = s[pos+1:]
                             p = p[2:]
                             break
                     if breakOut:
@@ -25,6 +25,9 @@ class Solution:
                         continue
             else:
                 return False
+        if len(p.replace("*", '')) == 0 and len(s) == 0:
+            return True
+        return False
 
 
-print(Solution().isMatch(input(), input()))
+print(Solution().isMatch(input().strip('"'), input().strip('"')))
