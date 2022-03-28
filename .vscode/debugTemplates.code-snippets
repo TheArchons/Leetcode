@@ -84,5 +84,17 @@
 		  "    result = result.next"
 		],
 		"description": ""
+	  },
+	  "array debug": {
+		"prefix": "arrayDebug",
+		"body": [
+		  "#code here",
+		  "$1",
+		  "",
+		  "nums = input().strip('[]').split(',')",
+		  "nums = [int(x) for x in nums]",
+		  "print(Solution.$0(Solution, nums))"
+		],
+		"description": ""
 	  }
 }
