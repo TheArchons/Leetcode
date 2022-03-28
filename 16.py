@@ -1,5 +1,5 @@
 #code here
-import math
+"""import math
 
 class Solution:
     def binarySearchClosest(self, nums, target):
@@ -43,8 +43,28 @@ class Solution:
                 if abs(sum - target) < abs(result - target):
                     result = sum
 
-        return result
+        return result"""
 
+import math
+
+class Solution:
+    def threeSumClosest(self, nums, target: int) -> int:
+        nums.sort()
+        result = math.inf
+        for i in range(len(nums)-1):
+            left = i + 1
+            right = len(nums) - 1
+            while left < right:
+                sum = nums[i] + nums[left] + nums[right]
+                if sum == target:
+                    return sum
+                elif sum < target:
+                    left += 1
+                else:
+                    right -= 1
+                if abs(sum - target) < abs(result - target):
+                    result = sum
+        return result
 
 nums = input().strip('[]').split(',')
 nums = [int(x) for x in nums]
