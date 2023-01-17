@@ -1,6 +1,6 @@
 class Solution:
     def rob(self, nums) -> int:
-        # base cases for 0, 1, 2, 3
+        # base cases for 0, 1, 2
         if len(nums) == 0:
             return 0
 
