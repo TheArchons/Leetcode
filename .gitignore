@@ -1,3 +1,4 @@
 *.exe
 .pytest_cache
 .benchmarks
+*.input
